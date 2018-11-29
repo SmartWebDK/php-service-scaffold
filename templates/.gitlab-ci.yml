@@ -1,0 +1,27 @@
+stages:
+- build
+- test
+
+build:tests:
+    stage: build
+    image: composer
+    cache:
+        key: ${CI_COMMIT_REF_SLUG}
+        paths:
+        - tests-vendor/
+    script:
+    - 'eval $(ssh-agent -s)'
+    - 'sh tools/setup-ssh.sh'
+    - "COMPOSER_VENDOR_DIR='tests-vendor/' composer -n install --no-progress --no-suggest"
+    artifacts:
+        paths:
+        - tests-vendor/
+        expire_in: 1 day
+
+test:unit:
+    stage: test
+    image: php:7.1-cli-alpine
+    dependencies:
+    - build:tests
+    script:
+    - 'sh tools/run-tests.sh "tests-vendor"'

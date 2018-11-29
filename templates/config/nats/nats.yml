@@ -1,0 +1,55 @@
+################################################################################
+# NATS Server Configuration
+#
+# For a complete list of configuration options, see:
+#   https://github.com/nats-io/nats-streaming-server#configuration-file.
+################################################################################
+
+## host/port to listen for client connections
+listen: 0.0.0.0:4222
+#
+## HTTP monitoring port
+http: 0.0.0.0:8222
+
+#
+# NATS Streaming Server configuration
+#
+streaming: {
+    # Cluster name. [default: 'test-cluster']
+    cluster_id: 'smartweb-cluster'
+
+    # Subject prefix for server discovery by clients. [default: '_STAN.discover']
+    discover_prefix: 'smartweb'
+
+    # Interval at which the server sends an heartbeat to a client. [default: ?]
+    hb_interval: '10s'
+
+    # How long the server waits for a heartbeat response from the client before considering it a failed heartbeat. [default: ?]
+    hb_timeout: '5s'
+
+    # Count of failed heartbeats before server closes the client connection. [default: ?]
+    # The actual total wait is: (fail count + 1) * (hb interval + hb timeout).
+    hb_fail_count: 3
+
+    #
+    # STORE LIMITS
+    #
+
+    # Maximum number of channels, 0 means unlimited. [default: 100]
+    max_channels: 100
+
+    # Maximum number of subscriptions per channel, 0 means unlimited. [default: 1,000]
+    max_subs: 1000
+
+    # Maximum number of messages per channel, 0 means unlimited. [default: 1,000,000]
+    max_msgs: 1000000
+
+    # Total size of messages per channel, 0 means unlimited. [default: 1,000,000]
+    max_bytes: 1000000
+
+    # How long messages can stay in the log. [default: 'unlimited']
+    max_age: 'unlimited'
+
+    # How long without any subscription and any new message before a channel can be automatically deleted. [default: 'unlimited']
+    max_inactivity: 'unlimited'
+}
