@@ -33,7 +33,7 @@ class Signals
         if (!\in_array($signal, $handler->signals(), true)) {
             $signals = \implode(',', $handler->signals());
             throw new \LogicException(
-                "Signal handler does not handle signal '{$signal}'; expected one of {{$signals}}"
+                "Signal handler does not handle signal '{$signal}'; expected one of {$signals}"
             );
         }
         
