@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 
 
-namespace SmartWeb\Webhooks\Support\Signals;
+namespace {{.Data.namespace}}\Support\Signals;
 
 /**
  * Provides OOP access to process-control signal behavior.

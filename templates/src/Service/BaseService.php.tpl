@@ -2,13 +2,13 @@
 declare(strict_types = 1);
 
 
-namespace SmartWeb\Webhooks\Service;
+namespace {{.Data.namespace}}\Service;
 
 use NatsStreaming\Exceptions\ConnectException;
 use NatsStreaming\Exceptions\TimeoutException;
 use SmartWeb\Util\PathUtil;
-use SmartWeb\Webhooks\Support\Signals\ShutdownHandler;
-use SmartWeb\Webhooks\Support\Signals\Signals;
+use {{.Data.namespace}}\Support\Signals\ShutdownHandler;
+use {{.Data.namespace}}\Support\Signals\Signals;
 
 /**
  * Base class for services.

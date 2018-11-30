@@ -2,13 +2,13 @@
 declare(strict_types = 1);
 
 
-namespace SmartWeb\Webhooks\Providers;
+namespace {{.Data.namespace}}\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use SmartWeb\Testing\Codeception\Setup;
 use SmartWeb\Testing\Module\Module;
 use SmartWeb\Testing\Module\ModuleRegistry;
-use SmartWeb\Webhooks\Console\Commands\SampleCommand;
+use {{.Data.namespace}}\Console\Commands\SampleCommand;
 
 /**
  * @author Nicolai Agersbæk <na@smartweb.dk>
@@ -21,8 +21,8 @@ class TestingServiceProvider extends ServiceProvider
         Setup::setDefaultTestsDir('tests');
         
         ModuleRegistry::getInstance()->set(
-            'webhooks',
-            new Module('webhooks', __DIR__ . '/../../src', 'SmartWeb\\Webhooks\\')
+            '{{.Name}}',
+            new Module('{{.Name}}', __DIR__ . '/../../src', '{{.Data.composerNamespace}}')
         );
     }
     

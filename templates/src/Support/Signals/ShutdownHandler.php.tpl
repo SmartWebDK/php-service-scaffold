@@ -2,10 +2,10 @@
 declare(strict_types = 1);
 
 
-namespace SmartWeb\Webhooks\Support\Signals;
+namespace {{.Data.namespace}}\Support\Signals;
 
 use Psr\Log\LoggerInterface;
-use SmartWeb\Webhooks\Service\ServiceInterface;
+use {{.Data.namespace}}\Service\ServiceInterface;
 
 /**
  * Signal handler that shuts down a service.

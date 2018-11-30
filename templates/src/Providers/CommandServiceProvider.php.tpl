@@ -2,10 +2,10 @@
 declare(strict_types = 1);
 
 
-namespace SmartWeb\Webhooks\Providers;
+namespace {{.Data.namespace}}\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use SmartWeb\Webhooks\Console\Commands\RunCommand;
+use {{.Data.namespace}}\Console\Commands\RunCommand;
 
 /**
  * Registers commands and requisite bindings.

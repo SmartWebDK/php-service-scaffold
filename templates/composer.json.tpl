@@ -38,7 +38,7 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "{{.Data.namespace}}\\": "src/"
+            "{{.Data.composerNamespace}}\\": "src/"
         }
     },
     "autoload-dev": {
@@ -46,7 +46,7 @@
             "tests/"
         ],
         "psr-4": {
-            "{{.Data.namespace}}\\Tests\\": "tests/"
+            "{{.Data.composerNamespace}}\\Tests\\": "tests/"
         }
     },
     "scripts": {

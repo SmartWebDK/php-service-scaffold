@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 
 
-namespace SmartWeb\Webhooks\Service;
+namespace {{.Data.namespace}}\Service;
 
 /**
  * The SmartWeb webhooks service.
@@ -11,7 +11,7 @@ namespace SmartWeb\Webhooks\Service;
  *
  * @api
  */
-class WebhooksService extends BaseService
+class ChangeClassNameService extends BaseService
 {
     
     /**
@@ -22,12 +22,12 @@ class WebhooksService extends BaseService
     /**
      * The (fully-qualified) name of this service.
      */
-    public const NAME = 'service.io.smartweb.webhooks';
+    public const NAME = 'service.io.smartweb.{{.Name}}';
     
     /**
      * The namespace of events used by this service.
      */
-    public const EVENT_NAMESPACE = 'io.smartweb.webhook';
+    public const EVENT_NAMESPACE = 'io.smartweb.{{.Name}}';
     
     /**
      * @param ServiceOptionsInterface $options
