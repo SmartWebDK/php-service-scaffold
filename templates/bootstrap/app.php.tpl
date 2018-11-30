@@ -85,7 +85,7 @@ $app->singleton(
 |
 */
 
-$app->register({{.Data.namespace}}\Providers\AuthServiceProvider::class);
+$app->register({{.Data.namespace}}\Providers\MainServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

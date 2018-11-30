@@ -6,7 +6,7 @@ namespace {{.Data.namespace}}\Console\Commands;
 
 use Illuminate\Console\Command;
 use Psr\Log\LoggerInterface;
-use SmartWeb\Webhooks\Service\ServiceInterface;
+use {{.Data.namespace}}\Service\ServiceInterface;
 
 /**
  * Boot and run the service.
