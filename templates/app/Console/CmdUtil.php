@@ -7,7 +7,7 @@ namespace App\Console;
 /**
  * Utility methods for interacting with the command line.
  *
- * @author Nicolai Agersbæk <na@smartweb.dk>
+ * @author Nicolai Agersbæk <na@zitcom.dk>
  *
  * @api
  */

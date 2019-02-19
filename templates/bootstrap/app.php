@@ -5,13 +5,13 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $env = \App\Console\CmdUtil::extractFromArgs($argv ?? [], '--env');
 
+$envFile = $env !== null
+    ? ".env.{$env}"
+    : '.env';
+
 try {
-    $envFile = $env !== null
-        ? ".env.{$env}"
-        : '.env';
-    
-    (new Dotenv\Dotenv(__DIR__ . '/../', $envFile))->load();
-} catch (Dotenv\Exception\InvalidPathException $err) {
+    \App\Console\EnvLoader::loadEnvFile(__DIR__, $envFile);
+} catch (\Dotenv\Exception\InvalidPathException $err) {
     print $err->getMessage() . PHP_EOL;
 }
 
@@ -26,7 +26,7 @@ try {
 |
 */
 
-$app = new Laravel\Lumen\Application(
+$app = new \Laravel\Lumen\Application(
     \dirname(__DIR__) . '/'
 );
 
@@ -46,13 +46,13 @@ $app->withEloquent();
 */
 
 $app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+    \Illuminate\Contracts\Debug\ExceptionHandler::class,
+    \App\Exceptions\Handler::class
 );
 
 $app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+    \Illuminate\Contracts\Console\Kernel::class,
+    \App\Console\Kernel::class
 );
 
 /*
@@ -67,11 +67,11 @@ $app->singleton(
 */
 
 // $app->middleware([
-//    App\Http\Middleware\ExampleMiddleware::class
+//    \App\Http\Middleware\ExampleMiddleware::class
 // ]);
 
 // $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
+//     'auth' => \App\Http\Middleware\Authenticate::class,
 // ]);
 
 /*
@@ -85,9 +85,9 @@ $app->singleton(
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+// $app->register(\App\Providers\AppServiceProvider::class);
+// $app->register(\App\Providers\AuthServiceProvider::class);
+// $app->register(\App\Providers\EventServiceProvider::class);
 $app->register(\SmartWeb\Webhooks\Providers\MainServiceProvider::class);
 
 /*
