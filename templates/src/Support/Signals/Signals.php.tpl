@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 
 
-namespace SmartWeb\Webhooks\Support\Signals;
+namespace {{.Data.namespace}}\Support\Signals;
 
 /**
  * Provides OOP access to process-control signal behavior.
@@ -33,7 +33,7 @@ class Signals
         if (!\in_array($signal, $handler->signals(), true)) {
             $signals = \implode(',', $handler->signals());
             throw new \LogicException(
-                "Signal handler does not handle signal '{$signal}'; expected one of {{$signals}}"
+                "Signal handler does not handle signal '{$signal}'; expected one of {$signals}"
             );
         }
         

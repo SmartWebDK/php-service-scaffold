@@ -5,36 +5,28 @@ services:
   composer:
     image: composer
     volumes:
-    - .:/app
-    - composer-cache:/tmp
+      - .:/app
+      - composer-cache:/tmp
 
   artisan:
     image: smartweb/php:7.1-cli-dev
     entrypoint: 'php artisan'
     working_dir: '/app'
     volumes:
-    - .:/app
-
-  bash:
-    image: smartweb/php:7.1-fpm-dev
-    entrypoint: 'bash'
-    working_dir: '/app'
-    volumes:
-    - .:/app
+      - .:/app
 
   codecept:
     image: smartweb/php:7.1-cli-dev
     entrypoint: 'php vendor/bin/codecept'
     working_dir: '/app'
     volumes:
-    - .:/app
+      - .:/app
 
   nats-streaming:
     image: nats-streaming
     command: "--config '/opt/nats/nats.yml' -D"
     working_dir: /app
     volumes:
-      - .:/app
       - ./config/nats/nats.yml:/opt/nats/nats.yml
 
   database:
@@ -44,9 +36,9 @@ services:
       MYSQL_ROOT_HOST: '%.%.%.%'
       MYSQL_DATABASE: {{.Name}}
     volumes:
-    - db-data:/var/lib/mysql
+      - db-data:/var/lib/mysql
     ports:
-    - 3306:3306
+      - 3306:3306
 
   rabbitmq:
     image: rabbitmq:3.6-management-alpine

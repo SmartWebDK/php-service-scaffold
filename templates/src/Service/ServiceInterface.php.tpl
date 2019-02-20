@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 
 
-namespace SmartWeb\Webhooks\Service;
+namespace {{.Data.namespace}}\Service;
 
 /**
  * The interface implemented by all services.

@@ -2,11 +2,11 @@
 declare(strict_types = 1);
 
 
-namespace SmartWeb\Webhooks\Console\Commands;
+namespace {{.Data.namespace}}\Console\Commands;
 
 use Illuminate\Console\Command;
 use Psr\Log\LoggerInterface;
-use SmartWeb\Webhooks\Service\ServiceInterface;
+use {{.Data.namespace}}\Service\ServiceInterface;
 
 /**
  * Boot and run the service.

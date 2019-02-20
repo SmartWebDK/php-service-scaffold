@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 
 
-namespace SmartWeb\Webhooks\Providers;
+namespace {{.Data.namespace}}\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -18,18 +18,11 @@ class CreateWebhooksTable extends Migration
     public function up() : void
     {
         Schema::create(
-            'webhooks',
+            'someMainTable',
             function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('solution_id', 50);
-                $table->string('source');
-                $table->string('hash_key');
-                $table->string('topic', 100);
-                $table->string('address');
                 $table->dateTimeTz('created_at');
                 $table->dateTimeTz('updated_at');
-                
-                $table->index(['solution_id', 'topic'], 'solution_topic_idx');
             }
         );
     }
