@@ -20,8 +20,10 @@
         "ext-pcntl": "*",
         "laravel/lumen-framework": "5.7.*",
         "vlucas/phpdotenv": "~2.2",
-        "smartweb/laravel-nats-bridge": "^0.2",
-        "smartweb/log": "^0.1"
+        "smartweb/log": "^1.0",
+        "smartweb/util": "^1.0",
+        "smartweb/events": "~0.3",
+        "smartweb/php-service": "~0.2",
     },
     "require-dev": {
         "ext-mbstring": "*",
@@ -29,7 +31,7 @@
         "phpunit/phpunit": "^7",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
-        "smartweb/testing": "^0.1"
+        "smartweb/testing": "^1.0"
     },
     "autoload": {
         "classmap": [

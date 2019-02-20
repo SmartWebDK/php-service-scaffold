@@ -22,13 +22,20 @@ class EnvLoader
     public const DEFAULT_MAX_SEARCH_DEPTH = 10;
     
     /**
-     * @param string   $baseDir
-     * @param string   $envFile
-     * @param int|null $maxSearchDepth
+     * @param string    $baseDir
+     * @param string    $envFile
+     * @param int|null  $maxSearchDepth
+     * @param bool|null $verbose
      */
-    public static function loadEnvFile(string $baseDir, string $envFile, ?int $maxSearchDepth = null) : void
+    public static function loadEnvFile(
+        string $baseDir,
+        string $envFile,
+        ?int $maxSearchDepth = null,
+        ?bool $verbose = null
+    ) : void
     {
         $maxSearchDepth = $maxSearchDepth ?? self::DEFAULT_MAX_SEARCH_DEPTH;
+        $verbose = $verbose ?? false;
         
         $envLoaded = false;
         
@@ -39,7 +46,7 @@ class EnvLoader
             if (file_exists($file)) {
                 (new Dotenv($dir, $envFile))->load();
                 $envLoaded = true;
-            } else {
+            } elseif ($verbose) {
                 \printf("File not found: {$file}\n");
             }
         }

@@ -26,8 +26,12 @@ try {
 |
 */
 
+if (!\defined('LARAVEL_BASE_PATH')) {
+    \define('LARAVEL_BASE_PATH', \dirname(__DIR__), true);
+}
+
 $app = new \Laravel\Lumen\Application(
-    \dirname(__DIR__) . '/'
+    \LARAVEL_BASE_PATH
 );
 
 // $app->withFacades();
