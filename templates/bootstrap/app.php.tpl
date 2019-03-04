@@ -1,18 +1,29 @@
 <?php
 declare(strict_types = 1);
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/autoload.php';
 
-$env = \App\Console\CmdUtil::extractFromArgs($argv ?? [], '--env');
-
-$envFile = $env !== null
-    ? ".env.{$env}"
-    : '.env';
+$envFile = \App\Console\EnvironmentDetector::detectEnvFile($_SERVER['argv'] ?? null);
 
 try {
     \App\Console\EnvLoader::loadEnvFile(__DIR__, $envFile);
 } catch (\Dotenv\Exception\InvalidPathException $err) {
-    print $err->getMessage() . PHP_EOL;
+    \printf(
+        '[warning] %s in %s:%d%s',
+        $err->getMessage(),
+        $err->getFile(),
+        $err->getLine(),
+        PHP_EOL
+    );
+} catch (\App\Exceptions\InvalidPathException $err) {
+    \printf(
+        "[warning] %s, at path '%s' in %s:%d%s",
+        $err->getMessage(),
+        $err->getPath(),
+        $err->getFile(),
+        $err->getLine(),
+        PHP_EOL
+    );
 }
 
 /*
@@ -26,12 +37,8 @@ try {
 |
 */
 
-if (!\defined('LARAVEL_BASE_PATH')) {
-    \define('LARAVEL_BASE_PATH', \dirname(__DIR__), true);
-}
-
 $app = new \Laravel\Lumen\Application(
-    \LARAVEL_BASE_PATH
+    \dirname(__DIR__)
 );
 
 // $app->withFacades();

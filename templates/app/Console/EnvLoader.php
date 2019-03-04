@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Console;
 
+use App\Exceptions\InvalidPathException;
 use Dotenv\Dotenv;
 
 /**
@@ -19,7 +20,7 @@ class EnvLoader
     /**
      * Default maximum depth at which to search for a given env file.
      */
-    public const DEFAULT_MAX_SEARCH_DEPTH = 10;
+    public const DEFAULT_MAX_SEARCH_DEPTH = 1;
     
     /**
      * @param string    $baseDir
@@ -32,27 +33,41 @@ class EnvLoader
         string $envFile,
         ?int $maxSearchDepth = null,
         ?bool $verbose = null
-    ) : void
-    {
+    ) : void {
         $maxSearchDepth = $maxSearchDepth ?? self::DEFAULT_MAX_SEARCH_DEPTH;
         $verbose = $verbose ?? false;
         
+        self::printf($verbose, "Locating env file: {$envFile}\n");
+        
         $envLoaded = false;
+        $filePath = $envFile;
         
         for ($i = 1; $i <= $maxSearchDepth; $i++) {
             $dir = \dirname($baseDir, $i);
-            $file = $dir . '/' . $envFile;
+            $filePath = $dir . '/' . $envFile;
             
-            if (file_exists($file)) {
+            if (file_exists($filePath)) {
                 (new Dotenv($dir, $envFile))->load();
                 $envLoaded = true;
-            } elseif ($verbose) {
-                \printf("File not found: {$file}\n");
+            } else {
+                self::printf($verbose, "File not found: {$filePath}\n");
             }
         }
         
         if (!$envLoaded) {
-            throw new \RuntimeException("Failed to find configuration file: {$envFile}");
+            throw new InvalidPathException($filePath, "Failed to find configuration file: {$envFile}");
+        }
+    }
+    
+    /**
+     * @param bool   $verbose
+     * @param string $format
+     * @param mixed  ...$args
+     */
+    private static function printf(bool $verbose, string $format, ...$args) : void
+    {
+        if ($verbose) {
+            \printf($format, ...$args);
         }
     }
 }
