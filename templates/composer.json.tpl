@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.3",
         "ext-pcntl": "*",
         "laravel/lumen-framework": "5.7.*",
         "vlucas/phpdotenv": "~2.2",
