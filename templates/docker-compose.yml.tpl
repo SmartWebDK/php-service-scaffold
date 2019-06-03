@@ -61,3 +61,4 @@ volumes:
 networks:
   global:
     external: true
+  local:
