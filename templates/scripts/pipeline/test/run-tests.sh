@@ -24,6 +24,9 @@ else
     codecept="$vendorDir/bin/codecept"
     autoload="$vendorDir/autoload.php"
 
+    artisan="$workingDir/artisan"
+    testingLib="$vendorDir/smartweb/testing"
+
     if [[ ! -d ${vendorDir} ]] ; then
         echo "invalid vendor dir '$vendorDir'"
         exit
@@ -34,22 +37,44 @@ else
         exit
     fi
 
+    if [[ ! -f ${artisan} ]] ; then
+        artisanSupported=false
+    else
+        artisanSupported=true
+    fi
+
+    echo "Artisan supported: $artisanSupported"
+
+    if [[ ! -d ${testingLib} ]] ; then
+        testingLibSupported=false
+    else
+        testingLibSupported=true
+    fi
+
+    echo "'smartweb/testing' supported: $testingLibSupported"
+
     if [[ ! -f ${phpUnit} ]] ; then
-        echo "missing PHPUnit binary '$phpUnit'"
         validPhpUnit=false
     else
+        echo "Found PHPUnit binary: '$phpUnit'"
         validPhpUnit=true
     fi
 
     if [[ ! -f ${codecept} ]] ; then
-        echo "missing Codeception binary '$codecept'"
         validCodeception=false
     else
+        echo "Found Codeception binary: '$phpUnit'"
         validCodeception=true
     fi
 
+    if [[ ${validCodeception} == true && ${artisanSupported} == true && ${testingLibSupported} == true ]] ; then
+        echo "Running Codeception tests (using Artisan)"
+        VENDOR_DIR_NAME="$vendorDirName" php ${artisan} testing:run-suite Unit --env=testing
+        exit
+    fi
+
     if [[ ${validCodeception} == true ]] ; then
-        echo "Running Codeception tests: $validCodeception"
+        echo "Running Codeception tests"
         php ${codecept} run
         exit
     fi
