@@ -1,8 +1,0 @@
-.idea
-.vscode
-vendor
-.env
-docker-compose.override.yml
-
-#Codeception
-tests/_support/_generated/*

@@ -8,33 +8,33 @@ use Illuminate\Support\ServiceProvider;
 use SmartWeb\Testing\Codeception\Setup;
 use SmartWeb\Testing\Module\Module;
 use SmartWeb\Testing\Module\ModuleRegistry;
-use {{.Data.namespace}}\Console\Commands\SampleCommand;
 
 /**
- * @author Nicolai Agersbæk <na@smartweb.dk>
+ * @author {{.Author.Name}} <{{.Author.Email}}>
  */
 class TestingServiceProvider extends ServiceProvider
 {
-    
+
     public function boot() : void
     {
-        Setup::setDefaultTestsDir('tests');
-        
-        ModuleRegistry::getInstance()->set(
-            '{{.Name}}',
-            new Module('{{.Name}}', __DIR__ . '/../../src', '{{.Data.composerNamespace}}')
-        );
+        $this->registerTestingModule();
     }
-    
-    /**
-     * Register any application services.
-     */
-    public function register() : void
+
+    private function registerTestingModule() : void
     {
-        $this->commands(
-            [
-                SampleCommand::class,
-            ]
+        $name = \env('APP_NAME');
+        $rootDir = \dirname(__DIR__, 2);
+
+        PathUtil::setLaravelRootDir($rootDir);
+
+        ModuleRegistry::getInstance()->set(
+            $name,
+            new Module(
+                $name,
+                $rootDir,
+                \env('APP_NS'),
+                \env('APP_TESTS_DIR')
+            )
         );
     }
 }

@@ -1,4 +1,4 @@
-version: '2.1'
+version: '3'
 
 services:
 
@@ -7,46 +7,57 @@ services:
     volumes:
       - .:/app
       - composer-cache:/tmp
+      - ~/.ssh:/home/${USER}/.ssh
+      - /etc/passwd:/etc/passwd:ro
+    user: 1000:1000
 
   artisan:
-    image: smartweb/php:7.1-cli-dev
+    image: smartweb/php-service-7.3
     entrypoint: 'php artisan'
     working_dir: '/app'
+    user: 1000:1000
+    environment:
+      XDEBUG_CONFIG: idekey=PHPSTORM remote_host=192.168.1.167 remote_enable=1
+      PHP_IDE_CONFIG: serverName=docker
     volumes:
       - .:/app
+    networks:
+      - local
+      - global
 
   codecept:
-    image: smartweb/php:7.1-cli-dev
+    image: smartweb/php-service-7.3
+    user: 1000:1000
     entrypoint: 'php vendor/bin/codecept'
     working_dir: '/app'
     volumes:
       - .:/app
 
-  nats-streaming:
-    image: nats-streaming
-    command: "--config '/opt/nats/nats.yml' -D"
-    working_dir: /app
-    volumes:
-      - ./config/nats/nats.yml:/opt/nats/nats.yml
-
-  database:
+  db:
     image: mysql/mysql-server:5.6
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_ROOT_HOST: '%.%.%.%'
-      MYSQL_DATABASE: {{.Name}}
+      MYSQL_DATABASE: {{.NameSlug}}
     volumes:
       - db-data:/var/lib/mysql
     ports:
-      - 3306:3306
+      - 3307:3306
+    networks:
+      - local
 
-  rabbitmq:
+  queue:
     image: rabbitmq:3.6-management-alpine
-    ports:
-      - 15672:15672
+    environment:
+      VIRTUAL_HOST: rabbitmq.{{.NameSlug}}.test
+      VIRTUAL_PORT: 15672
+    networks:
+      - local
 
 volumes:
   db-data:
-    driver: local
   composer-cache:
-    driver: local
+
+networks:
+  global:
+    external: true

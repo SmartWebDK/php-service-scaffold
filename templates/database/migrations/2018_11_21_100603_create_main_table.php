@@ -7,9 +7,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * @author Nicolai Agersbæk <na@smartweb.dk>
+ * TODO: Missing class description.
  */
-class CreateWebhooksTable extends Migration
+class CreateSomeTable extends Migration
 {
     
     /**
@@ -18,8 +18,8 @@ class CreateWebhooksTable extends Migration
     public function up() : void
     {
         Schema::create(
-            'someMainTable',
-            function (Blueprint $table) {
+            'some_table',
+            static function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->dateTimeTz('created_at');
                 $table->dateTimeTz('updated_at');
@@ -32,6 +32,6 @@ class CreateWebhooksTable extends Migration
      */
     public function down() : void
     {
-        Schema::dropIfExists('webhooks');
+        Schema::dropIfExists('some_table');
     }
 }
