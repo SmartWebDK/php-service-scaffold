@@ -22,8 +22,8 @@
         "vlucas/phpdotenv": "~2.2",
         "smartweb/log": "^1.0",
         "smartweb/util": "^1.0",
-        "smartweb/events": "~0.3",
-        "smartweb/php-service": "~0.2",
+        "smartweb/events": "~0.7",
+        "smartweb/php-service": "~0.7"
     },
     "require-dev": {
         "ext-mbstring": "*",
@@ -31,7 +31,7 @@
         "phpunit/phpunit": "^7",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
-        "smartweb/testing": "^1.0"
+        "smartweb/testing": "^1.2"
     },
     "autoload": {
         "classmap": [
