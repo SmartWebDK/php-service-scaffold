@@ -61,7 +61,7 @@
         "sort-packages": true,
         "optimize-autoloader": true,
         "platform": {
-            "php": "7.1.20",
+            "php": "7.3",
             "ext-mbstring": "0.1",
             "ext-pcntl": "0.1"
         }
