@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace {{.Data.namespace}}\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use SmartWeb\Testing\Codeception\Setup;
 use SmartWeb\Testing\Module\Module;
 use SmartWeb\Testing\Module\ModuleRegistry;
+use SmartWeb\Util\PathUtil;
 
 /**
  * @author {{.Author.Name}} <{{.Author.Email}}>

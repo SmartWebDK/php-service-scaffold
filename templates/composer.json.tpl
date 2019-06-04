@@ -19,11 +19,12 @@
         "php": ">=7.3",
         "ext-pcntl": "*",
         "laravel/lumen-framework": "5.7.*",
-        "vlucas/phpdotenv": "~2.2",
         "smartweb/log": "^1.0",
         "smartweb/util": "^1.0",
         "smartweb/events": "~0.7",
-        "smartweb/php-service": "~0.7"
+        "smartweb/php-service": "~0.7",
+        "vladimir-yuldashev/laravel-queue-rabbitmq": "^7.0",
+        "vlucas/phpdotenv": "~2.2"
     },
     "require-dev": {
         "ext-mbstring": "*",
@@ -62,6 +63,7 @@
         "optimize-autoloader": true,
         "platform": {
             "php": "7.3",
+            "ext-bcmath": "0.1",
             "ext-mbstring": "0.1",
             "ext-pcntl": "0.1"
         }

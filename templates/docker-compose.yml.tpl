@@ -7,18 +7,11 @@ services:
     volumes:
       - .:/app
       - composer-cache:/tmp
-      - ~/.ssh:/home/${USER}/.ssh
-      - /etc/passwd:/etc/passwd:ro
-    user: 1000:1000
 
   artisan:
     image: smartweb/php-service-7.3
     entrypoint: 'php artisan'
-    working_dir: '/app'
-    user: 1000:1000
-    environment:
-      XDEBUG_CONFIG: idekey=PHPSTORM remote_host=192.168.1.167 remote_enable=1
-      PHP_IDE_CONFIG: serverName=docker
+    working_dir: /app
     volumes:
       - .:/app
     networks:
@@ -27,9 +20,8 @@ services:
 
   codecept:
     image: smartweb/php-service-7.3
-    user: 1000:1000
     entrypoint: 'php vendor/bin/codecept'
-    working_dir: '/app'
+    working_dir: /app
     volumes:
       - .:/app
 
@@ -43,6 +35,15 @@ services:
       - db-data:/var/lib/mysql
     ports:
       - 3307:3306
+    networks:
+      - local
+
+  php:
+    image: smartweb/php-service-7.3
+    entrypoint: 'php'
+    working_dir: /app
+    volumes:
+      - .:/app
     networks:
       - local
 

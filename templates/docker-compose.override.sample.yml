@@ -1,0 +1,48 @@
+version: '3'
+
+#################
+## LINUX & MAC ##
+#################
+#services:
+#
+#  php:
+#    user: 1000:1000
+#
+#  artisan:
+#    user: 1000:1000
+#    environment:
+#      XDEBUG_CONFIG: idekey=PHPSTORM remote_host=YOUR_LOCAL_IP remote_enable=1
+#      PHP_IDE_CONFIG: serverName=docker
+#
+#  codecept:
+#    user: 1000:1000
+#
+#  db:
+#    user: 1000:1000
+#
+#  queue:
+#    user: 1000:1000
+#
+#  composer:
+#    volumes:
+#      - ~/.ssh:/home/${USER}/.ssh
+#      - /etc/passwd:/etc/passwd:ro
+#    user: 1000:1000
+
+
+#############
+## WINDOWS ##
+#############
+#services:
+#
+#  artisan:
+#    environment:
+#      XDEBUG_CONFIG: idekey=PHPSTORM remote_host=YOUR_LOCAL_IP remote_enable=1
+#      PHP_IDE_CONFIG: serverName=docker
+#
+#  composer:
+#    image: smartweb/composer
+#    volumes:
+#      - ~/.ssh:/root/.ssh
+#    environment:
+#      SSH_FILE: /root/.ssh/id_rsa
