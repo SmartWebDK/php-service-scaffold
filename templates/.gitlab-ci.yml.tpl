@@ -2,7 +2,6 @@ stages:
     - build
     - test
     - deploy
-    - artifact
 
 build:install:
     stage: build
@@ -42,3 +41,17 @@ test:unit:
         - build:install
     script:
         - sh scripts/pipeline/test/unit.sh
+
+deploy:packing:
+    stage: deploy
+    image: smartweb/php:7.3-service-alpine
+    script:
+        - cp .env.dist .env
+        - sh scripts/pipeline/deploy/build-phar.sh
+        - php bin/{{.Name.Hyphen}}.phar list
+    dependencies:
+        - build:install
+    artifacts:
+        name: phar
+        paths:
+            - bin/{{.Name.Hyphen}}.phar
