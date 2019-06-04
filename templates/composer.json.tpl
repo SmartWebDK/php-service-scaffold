@@ -21,7 +21,7 @@
         "laravel/lumen-framework": "5.7.*",
         "smartweb/log": "^1.0",
         "smartweb/util": "^1.0",
-        "smartweb/events": "~0.7",
+        "smartweb/events": "~0.8",
         "smartweb/php-service": "~0.7",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^7.0",
         "vlucas/phpdotenv": "~2.2"
