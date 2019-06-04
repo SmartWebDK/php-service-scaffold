@@ -31,7 +31,7 @@ test:integration:
     variables:
         MYSQL_ROOT_PASSWORD: password
         MYSQL_ROOT_HOST: '%.%.%.%'
-        MYSQL_DATABASE: test_{{.NameSlug}}
+        MYSQL_DATABASE: test_{{.Name.Underscore}}
     script:
         - sh scripts/pipeline/test/integration.sh
 

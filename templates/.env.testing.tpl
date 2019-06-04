@@ -1,7 +1,7 @@
-APP_NAME={{.NameSlug}}
+APP_NAME={{.Name.Hyphen}}
 APP_NS={{.Data.namespace}}
-APP_ID=service.io.smartweb.{{.NameSlug}}
-APP_EVENT_NS=io.smartweb.{{.NameSlug}}
+APP_ID=service.io.smartweb.{{.Name.Hyphen}}
+APP_EVENT_NS=io.smartweb.{{.Name.Hyphen}}
 APP_VERSION=0.1.0
 APP_TESTS_DIR=tests
 APP_ENV=testing
@@ -15,7 +15,7 @@ LOG_LEVEL=debug
 DB_CONNECTION=mysql
 DB_HOST=db
 DB_PORT=3306
-DB_DATABASE=test_{{.NameSlug}}
+DB_DATABASE=test_{{.Name.Underscore}}
 DB_USERNAME=root
 DB_PASSWORD=password
 
@@ -78,7 +78,7 @@ NATS_PASS='password'
 #NATS_VERIFY_PEER_NAME=
 
 NATS_DISCOVER_PREFIX=smartweb
-NATS_CLIENT_ID_PREFIX=service.io.smartweb.{{.NameSlug}}
+NATS_CLIENT_ID_PREFIX=service.io.smartweb.{{.Name.Hyphen}}
 NATS_CLUSTER_ID=smartweb-cluster
 
 #NATS_SUB_DURABLE_NAME=
@@ -90,5 +90,5 @@ NATS_CLUSTER_ID=smartweb-cluster
 #NATS_SUB_START_TIME=
 #NATS_SUB_MANUAL_ACK=
 
-NATS_SERVICE_NAME=service.io.smartweb.{{.NameSlug}}
-NATS_QUEUE_NAME=service.io.smartweb.{{.NameSlug}}
+NATS_SERVICE_NAME=service.io.smartweb.{{.Name.Hyphen}}
+NATS_QUEUE_NAME=service.io.smartweb.{{.Name.Hyphen}}

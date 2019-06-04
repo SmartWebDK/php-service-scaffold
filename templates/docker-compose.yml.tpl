@@ -38,7 +38,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_ROOT_HOST: '%.%.%.%'
-      MYSQL_DATABASE: {{.NameSlug}}
+      MYSQL_DATABASE: {{.Name.Underscore}}
     volumes:
       - db-data:/var/lib/mysql
     ports:
@@ -49,7 +49,7 @@ services:
   queue:
     image: rabbitmq:3.6-management-alpine
     environment:
-      VIRTUAL_HOST: rabbitmq.{{.NameSlug}}.test
+      VIRTUAL_HOST: rabbitmq.{{.Name.Hyphen}}.test
       VIRTUAL_PORT: 15672
     networks:
       - local

@@ -1,5 +1,5 @@
 {
-    "name": "smartweb/{{.NameSlug}}",
+    "name": "smartweb/{{.Name.Hyphen}}",
     "description": "{{.Description}}",{{if .Author.Name}}
     "authors": [
         {
