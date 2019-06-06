@@ -2,7 +2,7 @@
 declare(strict_types = 1);
 
 
-namespace {{.Data.namespace}}\Providers;
+namespace {{.Data.namespace}}\Testing\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use SmartWeb\Testing\Module\Module;

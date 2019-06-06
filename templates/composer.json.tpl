@@ -49,6 +49,7 @@
             "tests/"
         ],
         "psr-4": {
+            "{{.Data.composerNamespace}}\\Testing\\": "testing/",
             "{{.Data.composerNamespace}}\\Tests\\": "tests/"
         }
     },
