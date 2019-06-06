@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use SmartWeb\Laravel\Nats\Providers\DispatcherPluginServiceProvider;
 use SmartWeb\Laravel\Nats\Providers\NatsServiceProvider;
 use SmartWeb\Service\Providers\MainServiceProvider as ServiceMainServiceProvider;
+use SmartWeb\Testing\Providers\MainServiceProvider as TestingMainServiceProvider;
 use VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider;
 
 /**
@@ -27,5 +28,9 @@ class PluginServiceProvider extends ServiceProvider
         $this->app->register(NatsServiceProvider::class);
         $this->app->register(DispatcherPluginServiceProvider::class);
         $this->app->register(LaravelQueueRabbitMQServiceProvider::class);
+
+        if ($this->app->environment() === 'testing') {
+            $this->app->register(TestingMainServiceProvider::class);
+        }
     }
 }
