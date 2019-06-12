@@ -59,6 +59,9 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ]
     },
+    "bin": [
+        "artisan"
+    ],
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
