@@ -33,7 +33,7 @@
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
         "smartweb/codeception-lumen": "^3.0",
-        "smartweb/testing": "^1.2"
+        "smartweb/testing": "^1.3"
     },
     "autoload": {
         "classmap": [
