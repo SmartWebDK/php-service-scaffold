@@ -9,7 +9,7 @@ services:
       - composer-cache:/tmp
 
   artisan:
-    image: smartweb/php-service-7.3
+    image: smartweb/php:7.3-service-alpine
     entrypoint: 'php artisan'
     working_dir: /app
     volumes:
@@ -19,7 +19,7 @@ services:
       - global
 
   codecept:
-    image: smartweb/php-service-7.3
+    image: smartweb/php:7.3-service-alpine
     entrypoint: 'php vendor/bin/codecept'
     working_dir: /app
     volumes:
@@ -39,7 +39,7 @@ services:
       - local
 
   php:
-    image: smartweb/php-service-7.3
+    image: smartweb/php:7.3-service-alpine
     entrypoint: 'php'
     working_dir: /app
     volumes:
