@@ -26,7 +26,7 @@ services:
       - .:/app
 
   db:
-    image: mysql/mysql-server:5.6
+    image: mysql/mysql-server:5.7
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_ROOT_HOST: '%.%.%.%'
