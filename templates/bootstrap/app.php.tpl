@@ -3,29 +3,6 @@ declare(strict_types = 1);
 
 require_once __DIR__ . '/autoload.php';
 
-$envFile = \App\Console\EnvironmentDetector::detectEnvFile($_SERVER['argv'] ?? null);
-
-try {
-    \App\Console\EnvLoader::loadEnvFile(__DIR__, $envFile);
-} catch (\Dotenv\Exception\InvalidPathException $err) {
-    \printf(
-        '[warning] %s in %s:%d%s',
-        $err->getMessage(),
-        $err->getFile(),
-        $err->getLine(),
-        PHP_EOL
-    );
-} catch (\App\Exceptions\InvalidPathException $err) {
-    \printf(
-        "[warning] %s, at path '%s' in %s:%d%s",
-        $err->getMessage(),
-        $err->getPath(),
-        $err->getFile(),
-        $err->getLine(),
-        PHP_EOL
-    );
-}
-
 /*
 |--------------------------------------------------------------------------
 | Create The Application

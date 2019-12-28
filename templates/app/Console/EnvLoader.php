@@ -6,6 +6,8 @@ namespace App\Console;
 
 use App\Exceptions\InvalidPathException;
 use Dotenv\Dotenv;
+use SmartWeb\Util\PathUtil;
+use Webmozart\Assert\Assert;
 
 /**
  * Loads .env files.
@@ -41,12 +43,12 @@ class EnvLoader
         
         $envLoaded = false;
         $filePath = $envFile;
+    
+        for ($levels = 0; $levels <= $maxSearchDepth; $levels++) {
+            $dir = self::getDirName($baseDir, $levels);
+            $filePath = PathUtil::canonicalPath($dir, $envFile);
         
-        for ($i = 1; $i <= $maxSearchDepth; $i++) {
-            $dir = \dirname($baseDir, $i);
-            $filePath = $dir . '/' . $envFile;
-            
-            if (file_exists($filePath)) {
+            if (\file_exists($filePath)) {
                 (new Dotenv($dir, $envFile))->load();
                 $envLoaded = true;
             } else {
@@ -57,6 +59,23 @@ class EnvLoader
         if (!$envLoaded) {
             throw new InvalidPathException($filePath, "Failed to find configuration file: {$envFile}");
         }
+    }
+    
+    /**
+     * @param string   $path
+     * @param int|null $levels
+     *
+     * @return string
+     */
+    private static function getDirName(string $path, ?int $levels = null) : string
+    {
+        $levels = $levels ?? 0;
+        
+        Assert::greaterThanEq($levels, 0);
+        
+        return $levels > 0
+            ? \dirname($path, $levels)
+            : $path;
     }
     
     /**
