@@ -38,13 +38,15 @@ services:
     networks:
       - local
 
-  php:
-    image: smartweb/php:7.3-service-alpine
-    entrypoint: 'php'
-    working_dir: /app
+  {{.Name.Hyphen}}:
+    image: smartweb/{{.Name.Hyphen}}:dev
+    build:
+      context: .
+      target: dev
     volumes:
       - .:/app
     networks:
+      - global
       - local
 
   queue:
