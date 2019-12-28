@@ -43,6 +43,8 @@ services:
     build:
       context: .
       target: dev
+    ports:
+      - 8080:80
     volumes:
       - .:/app
     networks:
