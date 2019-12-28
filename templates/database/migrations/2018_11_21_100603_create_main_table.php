@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Schema;
 /**
  * TODO: Missing class description.
  */
-class CreateSomeTable extends Migration
+class CreateMainTable extends Migration
 {
     
     /**
