@@ -22,6 +22,8 @@ class MainServiceProvider extends ServiceProvider
 
     private function registerProviders() : void
     {
+        $this->app->register(BindingsServiceProvider::class);
+        $this->app->register(ConfigServiceProvider::class);
         $this->app->register(PluginServiceProvider::class);
 
         /** @noinspection ClassConstantCanBeUsedInspection */
